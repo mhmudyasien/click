@@ -3,8 +3,8 @@
 ## Files
 - `index.html` — the page
 - `style.css` — styling
-- `script.js` — interactivity (sound, counters, guestbook)
-- `assets/note.jpg` — your handwritten note image
+- `script.js` — interactivity (eye-tracking character, guestbook)
+- `assets/forest.jpg` — background
 
 ## Run it
 Double-click `index.html`, or from this folder run:
@@ -17,17 +17,20 @@ then open http://localhost:8000
 Drag this folder into Netlify or Vercel, or push it to a GitHub repo and
 turn on GitHub Pages.
 
-## Customize
-- Title / email: edit `index.html`.
-- Colors: top of `style.css`.
-- Sound: it's not an audio file — it's generated live in `script.js`
-  (Web Audio API: filtered noise for water/wind + tiny oscillator chirps
-  for birds). Tweak the gain values in `startAmbience()` to change volume.
+## What's on the page
+- A small animated paper character (pure SVG + CSS) that breathes gently,
+  waves with one hand, points with its pencil hand toward "Click", and its
+  eyes follow your cursor (tracked in `script.js`).
+- The "Click" label and the 📝 button below it.
+- Clicking 📝 opens the right-hand panel where a visitor can leave their
+  name and a note. Notes are stored in **localStorage**, so each visitor
+  only sees their own browser's notes — not a shared guestbook across
+  everyone. A real shared version needs a small backend (e.g. a Cloudflare
+  Worker + KV, or Firebase).
 
-## Note on the counters and guestbook
-"Global Clicks" and the guestbook notes are currently stored in
-**localStorage**, meaning each visitor only sees their own browser's data —
-not a real shared counter/guestbook across everyone, like the original site
-has. A real shared version needs a small backend (e.g. a Cloudflare Worker
-+ KV, or Firebase) to hold one shared number/list. Happy to add that next
-if you want it for real.
+## Customize
+- Character colors/shape: edit the SVG paths inside `index.html` under
+  `<div class="character">`.
+- Animation speed/angles: `style.css`, the `@keyframes wave`, `point`, and
+  `breathe` rules.
+- Contact email: in `index.html`.
