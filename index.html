@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahmoud's Clicker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sky"></div>
+<div class="hill"></div>
+
+<button class="notes-btn" id="notesBtn">📝</button>
+<div class="counter">Global Clicks: <span id="globalCount">0</span></div>
+
+<div class="card">
+  <h1>Mahmoud's Clicker</h1>
+  <div class="note-frame" id="noteFrame">
+    <img src="assets/note.jpg" alt="note">
+  </div>
+  <button class="clicks-btn" id="clickBtn">🌿 Clicks: <span id="myClicks">0</span></button>
+</div>
+
+<aside class="panel" id="panel">
+  <div class="panel-head">
+    <h2>Mahmoud's public fan notes</h2>
+    <button id="closePanel">✕</button>
+  </div>
+  <p class="panel-sub">Or send me a nice message at <a href="mailto:mhmudlll4xm@gmail.com">mhmudlll4xm@gmail.com</a> (actually works btw)</p>
+  <input type="text" id="who" placeholder="Who are you?">
+  <textarea id="msg" rows="3" placeholder="Say something nice about Mahmoud..."></textarea>
+  <button class="submit-btn" id="submitNote">Submit Note</button>
+  <div class="entries" id="entries"></div>
+</aside>
+
+<script src="script.js"></script>
+</body>
+</html>
