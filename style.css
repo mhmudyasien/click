@@ -12,10 +12,10 @@ body{
   justify-content:center;
 }
 
-/* forest backdrop */
+/* path/sky backdrop */
 .sky{
   position:fixed; inset:0; z-index:-2;
-  background:url('assets/forest.jpg') center center / cover no-repeat;
+  background:url('assets/path.jpg') center center / cover no-repeat;
 }
 .sky::after{
   content:"";
@@ -23,7 +23,21 @@ body{
   background:rgba(0,0,0,.18);
 }
 
-/* center stage: character + click label + icon button */
+.dhikr{
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:2;
+  text-align:center;
+  color:#000;
+  font-weight:700;
+  font-size:clamp(14px,2.6vw,20px);
+  line-height:1.6;
+  padding:14px 16px;
+  direction:rtl;
+  background:rgba(255,255,255,.55);
+}
+
+/* center stage: click label + icon button */
 .stage{
   display:flex;
   flex-direction:column;
