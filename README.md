@@ -3,34 +3,57 @@
 ## Files
 - `index.html` — the page
 - `style.css` — styling
-- `script.js` — interactivity (eye-tracking character, guestbook)
+- `script.js` — interactivity (panel toggle + shared guestbook via Firebase)
 - `assets/forest.jpg` — background
 
 ## Run it
-Double-click `index.html`, or from this folder run:
+Because `script.js` is now an ES module that talks to Firestore, just
+double-clicking `index.html` may not work in every browser. Safest is to
+run a local server from this folder:
 ```
 python3 -m http.server 8000
 ```
 then open http://localhost:8000
 
-## Deploy for free
-Drag this folder into Netlify or Vercel, or push it to a GitHub repo and
-turn on GitHub Pages.
+## Deploy
+Push this folder to GitHub and turn on GitHub Pages (or drag it into
+Netlify/Vercel). No build step needed — the Firebase SDK is loaded
+straight from Google's CDN inside `script.js`.
 
-## What's on the page
-- A small animated paper character (pure SVG + CSS) that breathes gently,
-  waves with one hand, points with its pencil hand toward "Click", and its
-  eyes follow your cursor (tracked in `script.js`).
-- The "Click" label and the 📝 button below it.
-- Clicking 📝 opens the right-hand panel where a visitor can leave their
-  name and a note. Notes are stored in **localStorage**, so each visitor
-  only sees their own browser's notes — not a shared guestbook across
-  everyone. A real shared version needs a small backend (e.g. a Cloudflare
-  Worker + KV, or Firebase).
+## The guestbook is now real and shared 🎉
+Notes are stored in **Firestore** (project `mahmouds-clicker`), so every
+visitor who opens the link sees the same notes, live — no more
+"only my friend can see his own note."
+
+## Important: security rules expire in 30 days
+You created the database in **test mode**, which lets anyone read/write
+with no restrictions — great for getting started, but those rules
+automatically lock everything (deny all) after 30 days.
+
+Before that happens, go to:
+**Firebase console → Firestore → Rules tab**, and replace the rules with
+something like:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /notes/{noteId} {
+      allow read: if true;
+      allow create: if request.resource.data.msg is string
+                    && request.resource.data.msg.size() < 500;
+      allow update, delete: if false;
+    }
+  }
+}
+```
+
+This keeps the guestbook public and writable by anyone (so visitors can
+still leave notes), but blocks edits/deletes of other people's notes and
+caps note length — a bit safer than full test-mode access, and it won't
+expire.
 
 ## Customize
-- Character colors/shape: edit the SVG paths inside `index.html` under
-  `<div class="character">`.
-- Animation speed/angles: `style.css`, the `@keyframes wave`, `point`, and
-  `breathe` rules.
-- Contact email: in `index.html`.
+- Contact email / labels: `index.html`.
+- Colors: `style.css`.
+- Firebase config: top of `script.js`, inside `firebaseConfig`.

@@ -20,13 +20,13 @@ const notesCol = collection(db, "notes");
 
 /* ===================== panel toggle ===================== */
 const panel = document.getElementById('panel');
-document.getElementById('notesBtn').addEventListener('click', () => panel.classList.add('open'));
-document.getElementById('closePanel').addEventListener('click', () => panel.classList.remove('open'));
+document.getElementById('notesBtn').addEventListener('click', ()=> panel.classList.add('open'));
+document.getElementById('closePanel').addEventListener('click', ()=> panel.classList.remove('open'));
 
 /* ===================== guestbook (shared, via Firestore) ===================== */
 const entriesEl = document.getElementById('entries');
 
-function esc(s) {
+function esc(s){
   const d = document.createElement('div');
   d.textContent = s;
   return d.innerHTML;
