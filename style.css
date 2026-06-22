@@ -14,12 +14,6 @@ body{
   position:fixed; inset:0; z-index:-2;
   background:#000 url('assets/bg.jpg') center center / cover no-repeat;
 }
-@media (max-width:700px){
-  .sky{
-    background-size:100% auto;
-    background-position:top center;
-  }
-}
 .sky::after{
   content:"";
   position:absolute; inset:0;
