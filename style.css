@@ -16,7 +16,8 @@ body{
 }
 @media (max-width:700px){
   .sky{
-    background-size:contain;
+    background-size:100% auto;
+    background-position:top center;
   }
 }
 .sky::after{
