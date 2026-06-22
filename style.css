@@ -12,7 +12,12 @@ body{
 /* path/sky backdrop */
 .sky{
   position:fixed; inset:0; z-index:-2;
-  background:url('assets/bg.jpg') center center / cover no-repeat;
+  background:#000 url('assets/bg.jpg') center center / cover no-repeat;
+}
+@media (max-width:700px){
+  .sky{
+    background-size:contain;
+  }
 }
 .sky::after{
   content:"";
@@ -20,21 +25,7 @@ body{
   background:rgba(0,0,0,.18);
 }
 
-.dhikr{
-  position:fixed;
-  top:0; left:0; right:0;
-  z-index:2;
-  text-align:center;
-  color:#000;
-  font-weight:700;
-  font-size:clamp(14px,2.6vw,20px);
-  line-height:1.6;
-  padding:14px 16px;
-  direction:rtl;
-  background:rgba(255,255,255,.55);
-}
-
-/* top-left corner: click label + icon buttons */
+/* top-left corner: click label + icon button */
 .stage{
   position:fixed;
   top:18px; left:18px;
@@ -54,11 +45,6 @@ body{
   text-shadow:0 2px 8px rgba(0,0,0,.5);
 }
 
-.btn-row{
-  display:flex;
-  gap:12px;
-}
-
 .notes-btn{
   width:84px;height:64px;
   font-size:30px;
@@ -71,40 +57,6 @@ body{
 }
 .notes-btn:hover{ filter:brightness(1.18); transform:translateY(-2px); }
 .notes-btn:active{ transform:translateY(1px); }
-
-.upload-status{
-  font-size:12px;
-  color:#666;
-  min-height:16px;
-  margin-bottom:10px;
-}
-
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:8px;
-}
-.gallery-item{
-  position:relative;
-  border-radius:6px;
-  overflow:hidden;
-  background:#f0f0f0;
-}
-.gallery-item img{
-  width:100%;
-  height:110px;
-  object-fit:cover;
-  display:block;
-}
-.gallery-item .who{
-  position:absolute;
-  bottom:0; left:0; right:0;
-  font-size:10px;
-  color:#fff;
-  background:rgba(0,0,0,.55);
-  padding:3px 6px;
-  text-align:center;
-}
 
 /* slide-out panel */
 .panel{

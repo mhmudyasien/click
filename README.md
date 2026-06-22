@@ -53,33 +53,6 @@ still leave notes), but blocks edits/deletes of other people's notes and
 caps note length — a bit safer than full test-mode access, and it won't
 expire.
 
-## The gallery (visitors can upload art/photos)
-There's now a second 🖼️ button that opens an upload panel. Uploaded
-images go into **Firebase Storage**, and a record (uploader name + URL)
-gets saved in a Firestore collection called `gallery` — so every visitor
-sees everyone's uploads, live.
-
-### You need to enable Storage once
-1. Firebase console → left sidebar → **Storage** (under "Build" or
-   "Databases & Storage" depending on your console version).
-2. Click **Get started** and follow the prompts (pick a location).
-3. Go to the **Rules** tab for Storage and use something like:
-```
-rules_version = '2';
-service firebase.storage {
-  match /b/{bucket}/o {
-    match /gallery/{fileName} {
-      allow read: if true;
-      allow write: if request.resource.size < 5 * 1024 * 1024
-                   && request.resource.contentType.matches('image/.*');
-    }
-  }
-}
-```
-This keeps uploads public (anyone can add art) but caps file size at 5MB
-and only allows image files — a bit safer than wide-open test mode, and
-it won't expire like the Firestore test rules do.
-
 ## Forcing visitors to get the latest script.js (cache-busting)
 Browsers cache `.js` files, so a returning visitor might keep running an
 old version even after you update and re-upload. `index.html` loads the
