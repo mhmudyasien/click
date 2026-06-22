@@ -53,6 +53,17 @@ still leave notes), but blocks edits/deletes of other people's notes and
 caps note length — a bit safer than full test-mode access, and it won't
 expire.
 
+## Forcing visitors to get the latest script.js (cache-busting)
+Browsers cache `.js` files, so a returning visitor might keep running an
+old version even after you update and re-upload. `index.html` loads the
+script with a version tag:
+```html
+<script type="module" src="script.js?v=2"></script>
+```
+**Every time you change `script.js` and re-upload, bump that number**
+(`?v=3`, `?v=4`, ...). The browser treats a different URL as a brand new
+file and fetches it fresh — no need to ask visitors to hard-refresh.
+
 ## Customize
 - Contact email / labels: `index.html`.
 - Colors: `style.css`.
