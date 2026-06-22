@@ -7,15 +7,12 @@ html,body{
 body{
   min-height:100vh;
   position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 /* path/sky backdrop */
 .sky{
   position:fixed; inset:0; z-index:-2;
-  background:url('assets/path.jpg') center center / cover no-repeat;
+  background:url('assets/bg.jpg') center center / cover no-repeat;
 }
 .sky::after{
   content:"";
@@ -37,12 +34,15 @@ body{
   background:rgba(255,255,255,.55);
 }
 
-/* center stage: click label + icon button */
+/* top-left corner: click label + icon buttons */
 .stage{
+  position:fixed;
+  top:18px; left:18px;
   display:flex;
   flex-direction:column;
-  align-items:center;
+  align-items:flex-start;
   gap:6px;
+  z-index:2;
 }
 
 .click-label{
@@ -52,6 +52,11 @@ body{
   letter-spacing:1px;
   color:#fff;
   text-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+
+.btn-row{
+  display:flex;
+  gap:12px;
 }
 
 .notes-btn{
@@ -66,6 +71,40 @@ body{
 }
 .notes-btn:hover{ filter:brightness(1.18); transform:translateY(-2px); }
 .notes-btn:active{ transform:translateY(1px); }
+
+.upload-status{
+  font-size:12px;
+  color:#666;
+  min-height:16px;
+  margin-bottom:10px;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:8px;
+}
+.gallery-item{
+  position:relative;
+  border-radius:6px;
+  overflow:hidden;
+  background:#f0f0f0;
+}
+.gallery-item img{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+  display:block;
+}
+.gallery-item .who{
+  position:absolute;
+  bottom:0; left:0; right:0;
+  font-size:10px;
+  color:#fff;
+  background:rgba(0,0,0,.55);
+  padding:3px 6px;
+  text-align:center;
+}
 
 /* slide-out panel */
 .panel{
